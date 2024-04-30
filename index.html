@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 98vh;
+        }
+
+        .ok{
+            display: block;
+            justify-content: left;
+            align-content: normal;
+            text-align: left;
+            overflow-wrap: break-word;
+            overflow-y: scroll;
+            height: 98vh;
+            width: 98vw;
+        }
+    </style>
+</head>
+<body>
+    <p id="m">hear ye hear ye shorten your links to the most shortenest link sortened hyperlink everrr!!!!<br>
+        <input id="in" placeholder="link"><button onmouseup="shorn()">shorten</button><br>
+        <input id="funny" placeholder="funny text"><br>
+        <textarea id="wawa">your shortened link here</textarea><br>
+        <i id="info">click funny shortn button for text to appear here!!!</i>
+    </p>
+    <script>
+
+
+        const alpha = "/teoasicrm.phndlwf:1b08-23kug964_75vxjAyC#GWS=zJZD%?TOLUqVRXKNMFB)'*,+H@(I$PQYE&;!";
+        const curr = Array.from(new URLSearchParams(window.location.search).values())[0]
+        if(curr != undefined){
+            document.getElementById("m").innerText = curr;
+            document.getElementById("m").className = "ok";
+            var o = 0n
+
+            for(var c in curr){
+                o *= 2n
+                if(curr[c].toUpperCase() == curr[c])
+                    o += 1n
+            }
+
+            console.log(o.toString(2))
+
+            const k = Array.from(new URLSearchParams(window.location.search).keys())[0]
+            document.getElementById("m").innerText = k;
+                var n = o
+                var y = ''
+                while(n > 0){
+                    var r = n % BigInt(alpha.length)
+                    y = alpha[Number(r)] + y
+                    n = (n - r)/BigInt(alpha.length)
+                    console.log(n, r, y)
+                }
+                document.getElementById("m").innerHTML = "<a href=\""+ y +"\">"+k+"</a>"
+        }
+
+        function shorn(){
+            console.log("h")
+            var text = document.getElementById("funny").value.replace(/ /g, '_').replace(/[^a-zA-Z0-9_$.+!*()',]/g, '-').toLowerCase();
+            if(text.length <= 0)
+                text = 'short';
+            var link = document.getElementById("in").value;
+            var o = 0n
+            for(let i of link){
+                if(!new Set(alpha).has(i)){
+                    document.getElementById("info").innerText = "hey thats not a propa link";
+                    return;
+                }
+                console.log(o)
+                o *= BigInt(alpha.length)
+                console.log(o)
+                o += BigInt(alpha.indexOf(i))
+                console.log(i, alpha.indexOf(i), BigInt(alpha.indexOf(i)), o)
+            }
+
+            console.log(o)
+            var k = o.toString(2)
+            console.log(k)
+            var y = ''
+            var u = 0
+            for(var v of k){
+                if(v == '1')
+                    text = text.toUpperCase()
+                else 
+                    text = text.toLowerCase()
+                y += text[u]
+
+                u += 1
+                if(u >= text.length)
+                    u = 0
+            }
+            document.getElementById("wawa").value = "shorner.faintandasphyxiate.com/?" + text.toLowerCase() + "=" + y
+        }
+    </script>
+</body>
